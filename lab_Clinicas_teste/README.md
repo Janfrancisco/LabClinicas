@@ -1,6 +1,8 @@
 # lab_clinicas_teste
 
-A new Flutter project.
+Projeto de um sistema de auto atendimento para clínicas de laboratório.
+
+Criação do Flutter Experience da Academia do Flutter
 
 ## Getting Started
 
