@@ -1,4 +1,6 @@
+import 'package:asyncstate/asyncstate.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_getit/flutter_getit.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
 import 'package:lab_clinicas_teste/home_controller.dart';
 
@@ -12,28 +14,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    return LabClinicasCoreConfig(
+      title: 'Lab Clínicas',
+      pagesBuilder: [
+        FlutterGetItPageBuilder(
+          page: (_) => const MyHomePage(title: 'title'),
+          path: '/',
+        )
+      ],
     );
   }
 }
@@ -57,14 +45,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> with MessageViewMixin {
-  int _counter = 0;
+  final int _counter = 0;
   final controller = HomeController();
 
   void _incrementCounter() {
-    controller.fazerAlgo();
+    Future.delayed(const Duration(seconds: 5)).asyncLoader();
+
+    /* controller.fazerAlgo();
     setState(() {
       _counter++;
-    });
+    }); */
   }
 
   @override

@@ -8,3 +8,4 @@ export 'src/constants/local_storage_constants.dart';
 export 'src/loader/lab_clinicas_loader.dart';
 export 'src/restClient/interceptors/auth_interceptor.dart';
 export 'src/restClient/rest_client.dart';
+export 'src/lab_clinicas_core_config.dart';
