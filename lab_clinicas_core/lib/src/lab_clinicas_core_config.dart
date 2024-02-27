@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 import 'package:lab_clinicas_core/src/loader/lab_clinicas_loader.dart';
+import 'package:lab_clinicas_core/src/theme/lab_clinicas_theme.dart';
 
 class LabClinicasCoreConfig extends StatelessWidget {
   const LabClinicasCoreConfig({
@@ -24,6 +25,7 @@ class LabClinicasCoreConfig extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlutterGetIt(
       bindings: binding,
+      modules: modules,
       pages: [...pages ?? [], ...pagesBuilder ?? []],
       debugMode: kDebugMode,
       builder: (context, routes, flutterGetItNavObserver) {
@@ -31,6 +33,9 @@ class LabClinicasCoreConfig extends StatelessWidget {
           loader: LabClinicasLoader(),
           builder: (navigatorObserver) {
             return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              theme: LabClinicasTheme.lightTheme,
+              darkTheme: LabClinicasTheme.dartTheme,
               title: title,
               navigatorObservers: [
                 navigatorObserver,
