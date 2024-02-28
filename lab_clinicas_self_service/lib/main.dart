@@ -11,8 +11,10 @@ import 'package:flutter_getit/flutter_getit.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
 
 void main() {
-  runZonedGuarded(() => runApp(const LabClinicasSelfServiceApp()),
-      (error, stack) {
+  runZonedGuarded(() {
+    WidgetsFlutterBinding.ensureInitialized();
+    runApp(const LabClinicasSelfServiceApp());
+  }, (error, stack) {
     log('Erro não tratado', error: error, stackTrace: stack);
     throw error;
   });

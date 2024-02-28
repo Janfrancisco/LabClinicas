@@ -1,6 +1,8 @@
+import 'package:fe_lab_clinicas_self_service_cb/src/modules/self_service/find_patient/find_patient_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_getit/flutter_getit.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:signals_flutter/signals_flutter.dart';
 import 'package:validatorless/validatorless.dart';
 
 class FindPatientPage extends StatefulWidget {
@@ -10,9 +12,24 @@ class FindPatientPage extends StatefulWidget {
   State<FindPatientPage> createState() => _FindPatientPageState();
 }
 
-class _FindPatientPageState extends State<FindPatientPage> {
+class _FindPatientPageState extends State<FindPatientPage>
+    with MessageViewMixin {
   final formKey = GlobalKey<FormState>();
   final documentEC = TextEditingController();
+  final controller = Injector.get<FindPatientController>();
+
+  @override
+  void initState() {
+    messageListener(controller);
+    effect(() {
+      final FindPatientController(:patient, :patientNotFound) = controller;
+      if (patient != null || patientNotFound != null) {
+        //SelfServiceController setando o dado do paciente e redirecionando
+        print('Paciente : ${patient != null}');
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +122,10 @@ class _FindPatientPageState extends State<FindPatientPage> {
                               onPressed: () {
                                 final valid =
                                     formKey.currentState?.validate() ?? false;
-                                if (valid) {}
+                                if (valid) {
+                                  controller
+                                      .findPatientByDocuemnt(documentEC.text);
+                                }
                               },
                               child: const Text('Continuar')),
                         )

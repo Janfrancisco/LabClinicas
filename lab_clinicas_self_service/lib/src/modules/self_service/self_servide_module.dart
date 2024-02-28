@@ -8,13 +8,18 @@ import 'package:fe_lab_clinicas_self_service_cb/src/modules/self_service/patient
 import 'package:fe_lab_clinicas_self_service_cb/src/modules/self_service/self_service_page.dart';
 import 'package:fe_lab_clinicas_self_service_cb/src/modules/self_service/self_sevice_controller.dart';
 import 'package:fe_lab_clinicas_self_service_cb/src/modules/self_service/who_i_am/who_i_am_page.dart';
+import 'package:fe_lab_clinicas_self_service_cb/src/repositories/patients/patient_repository.dart';
+import 'package:fe_lab_clinicas_self_service_cb/src/repositories/patients/patient_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 
 class SelfServideModule extends FlutterGetItModule {
   @override
-  List<Bind<Object>> get bindings =>
-      [Bind.lazySingleton((i) => SelfSeviceController())];
+  List<Bind<Object>> get bindings => [
+        Bind.lazySingleton((i) => SelfSeviceController()),
+        Bind.lazySingleton<PatientRepository>(
+            (i) => PatientRepositoryImpl(restClient: i()))
+      ];
 
   @override
   String get moduleRouteName => '/self-service';
