@@ -12,7 +12,7 @@ pubspec.lock
 doc/api/
 
 Videos/
-links.txt
+# links.txt
 
 # dotenv environment variables file
 .env*

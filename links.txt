@@ -1,0 +1,33 @@
+https://gist.github.com/rodrigorahman/944b0b2de95c28c10a31b2e174abce3c
+
+
+Aula 1.5 > Criação do package Core.
+           Criação da classe Either (Programação Funcional
+           Criação do core de mensagens
+
+Aula 1.6 >> Criação do projeto teste
+            Criação do mixin para mensagens
+
+Aula 1.7 >> Criação do Loader(carregamento de tela) com asyncstate
+            Configuração do RestClient(Dio e auth)
+
+Aula 2.5 >> Implementação da função login
+            Criação do módulo Home
+
+Aula 2.6 >> Construindo a Home page
+            Criando o appBar
+
+Aula 3.2    Criação da tela who i am
+
+
+Aula 3.3 >> Criação da tela patient
+            Configurando o envio do token na requisição do postman
+	    Criação do model patient com json serializable
+            Construindo o patient repository
+
+Aula 3.4 >> Continuando a construção do patient repository
+            Construindo o patient controller
+            Integração tela com controller
+            Incluindo mascara no campo CPF
+
+Aula 3.5 >>

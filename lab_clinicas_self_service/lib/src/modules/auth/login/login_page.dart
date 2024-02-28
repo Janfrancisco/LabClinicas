@@ -71,7 +71,7 @@ class _LoginPageState extends State<LoginPage> with MessageViewMixin {
                     height: 32,
                   ),
                   TextFormField(
-                    controller: emailEC,
+                    controller: emailEC..text = 'jan@jan.com.br',
                     validator: Validatorless.multiple([
                       Validatorless.required("Email é obrigatório"),
                       Validatorless.email("Email inválido")
@@ -84,7 +84,7 @@ class _LoginPageState extends State<LoginPage> with MessageViewMixin {
                   Watch((_) {
                     return TextFormField(
                       obscureText: controller.obscurePassword,
-                      controller: passwordEC,
+                      controller: passwordEC..text = '123123',
                       validator: Validatorless.required("Senha é obrigatória"),
                       decoration: InputDecoration(
                         suffixIcon: IconButton(

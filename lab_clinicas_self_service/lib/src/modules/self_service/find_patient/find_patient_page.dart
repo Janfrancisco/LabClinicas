@@ -1,9 +1,12 @@
 import 'package:fe_lab_clinicas_self_service_cb/src/modules/self_service/find_patient/find_patient_controller.dart';
+import 'package:fe_lab_clinicas_self_service_cb/src/modules/self_service/self_sevice_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 import 'package:validatorless/validatorless.dart';
+import 'package:brasil_fields/brasil_fields.dart';
 
 class FindPatientPage extends StatefulWidget {
   const FindPatientPage({super.key});
@@ -25,7 +28,7 @@ class _FindPatientPageState extends State<FindPatientPage>
       final FindPatientController(:patient, :patientNotFound) = controller;
       if (patient != null || patientNotFound != null) {
         //SelfServiceController setando o dado do paciente e redirecionando
-        print('Paciente : ${patient != null}');
+        Injector.get<SelfSeviceController>().goToFormPatient(patient);
       }
     });
     super.initState();
@@ -37,22 +40,18 @@ class _FindPatientPageState extends State<FindPatientPage>
         appBar: LabClinicasAppBar(
           actions: [
             PopupMenuButton(
-              child: const IconPopupMenuWidget(),
-              itemBuilder: (_) {
-                return [
-                  const PopupMenuItem(
-                    value: 1,
-                    child: Text('Reiniciar processo'),
-                  ),
-                ];
-              },
-              onSelected: (value) async {
-                if (value == 1) {
-                  final nav = Navigator.of(context);
-                  nav.pushNamedAndRemoveUntil('/', (route) => false);
-                }
-              },
-            )
+                child: const IconPopupMenuWidget(),
+                itemBuilder: (_) {
+                  return [
+                    const PopupMenuItem(
+                      value: 1,
+                      child: Text('Reiniciar processo'),
+                    ),
+                  ];
+                },
+                onSelected: (value) async {
+                  Injector.get<SelfSeviceController>().restartProcess();
+                })
           ],
         ),
         body: LayoutBuilder(builder: (_, constraints) {
@@ -81,6 +80,11 @@ class _FindPatientPageState extends State<FindPatientPage>
                           height: 48,
                         ),
                         TextFormField(
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            CpfInputFormatter()
+                          ],
                           controller: documentEC,
                           decoration: const InputDecoration(
                             label: Text('Digite o CPF do paciente'),
@@ -101,7 +105,9 @@ class _FindPatientPageState extends State<FindPatientPage>
                               ),
                             ),
                             TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  controller.continueWithoutDocument();
+                                },
                                 child: const Text(
                                   'Clique aqui',
                                   style: TextStyle(

@@ -1,3 +1,4 @@
+import 'package:fe_lab_clinicas_self_service_cb/src/model/patient_model.dart';
 import 'package:fe_lab_clinicas_self_service_cb/src/model/self_service_model.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
 import 'package:signals_flutter/signals_flutter.dart';
@@ -29,5 +30,15 @@ class SelfSeviceController with MessageStateMixin {
 
   void clearForm() {
     _model = _model.clear();
+  }
+
+  void goToFormPatient(PatientModel? patient) {
+    _model = _model.copyWith(patient: () => patient);
+    _step.forceUpdate(FormSteps.patient);
+  }
+
+  void restartProcess() {
+    _step.forceUpdate(FormSteps.restart);
+    clearForm();
   }
 }
