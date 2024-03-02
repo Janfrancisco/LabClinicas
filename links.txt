@@ -35,6 +35,7 @@ Aula 3.5 >> Criando o formulário de Patient page
 
 Aula 3.6 >> Criando a controller da Patient page
             Populando os textFields
+            Tratando a lógica dos text fields
 
 
 
