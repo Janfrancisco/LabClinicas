@@ -13,6 +13,7 @@ doc/api/
 
 Videos/
 # links.txt
+database.json
 
 # dotenv environment variables file
 .env*
