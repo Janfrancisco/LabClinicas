@@ -18,7 +18,7 @@ final class LabClinicasTheme {
       fontFamily: 'Montserrat',
       scaffoldBackgroundColor: lightOrangeColor,
       inputDecorationTheme: InputDecorationTheme(
-	border: _defaultInputBorder,
+        border: _defaultInputBorder,
         enabledBorder: _defaultInputBorder,
         focusedBorder: _defaultInputBorder,
         errorBorder: _defaultInputBorder.copyWith(
@@ -37,6 +37,21 @@ final class LabClinicasTheme {
           color: blueColor,
           fontWeight: FontWeight.w600,
         ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+            backgroundColor: Colors.white,
+            side: BorderSide(
+              color: blueColor,
+            ),
+            foregroundColor: blueColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            textStyle: const TextStyle(
+                fontFamily: 'Montserrat',
+                fontSize: 14,
+                fontWeight: FontWeight.bold)),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(

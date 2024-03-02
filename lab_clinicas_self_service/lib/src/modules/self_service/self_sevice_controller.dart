@@ -8,6 +8,7 @@ enum FormSteps { none, whoIAm, findPatient, patient, documents, done, restart }
 class SelfSeviceController with MessageStateMixin {
   final _step = ValueSignal(FormSteps.none);
   var _model = const SelfServiceModel();
+  SelfServiceModel get model => _model;
 
   FormSteps get step => _step();
 

@@ -5,6 +5,7 @@ import 'package:fe_lab_clinicas_self_service_cb/src/modules/self_service/documen
 import 'package:fe_lab_clinicas_self_service_cb/src/modules/self_service/find_patient/find_patient_page.dart';
 import 'package:fe_lab_clinicas_self_service_cb/src/modules/self_service/find_patient/find_patient_router.dart';
 import 'package:fe_lab_clinicas_self_service_cb/src/modules/self_service/patient/patient_page.dart';
+import 'package:fe_lab_clinicas_self_service_cb/src/modules/self_service/patient/patient_router.dart';
 import 'package:fe_lab_clinicas_self_service_cb/src/modules/self_service/self_service_page.dart';
 import 'package:fe_lab_clinicas_self_service_cb/src/modules/self_service/self_sevice_controller.dart';
 import 'package:fe_lab_clinicas_self_service_cb/src/modules/self_service/who_i_am/who_i_am_page.dart';
@@ -29,7 +30,7 @@ class SelfServideModule extends FlutterGetItModule {
         '/': (context) => const SelfServicePage(),
         '/whoIAm': (context) => const WhoIAmPage(),
         '/find-patient': (context) => const FindPatientRouter(),
-        '/patient': (context) => const PatientPage(),
+        '/patient': (context) => const PatientRouter(),
         '/documents': (context) => const DocumentsPage(),
         '/documents/scan': (context) => const DocumentsScanPage(),
         '/documents/scan/confirm': (context) =>

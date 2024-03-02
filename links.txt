@@ -30,4 +30,11 @@ Aula 3.4 >> Continuando a construção do patient repository
             Integração tela com controller
             Incluindo mascara no campo CPF
 
-Aula 3.5 >>
+Aula 3.5 >> Criando o formulário de Patient page
+            Exportando vários text editing controller para a página Patient de uma forma mais limpa	
+
+Aula 3.6 >> Criando a controller da Patient page
+            Populando os textFields
+
+
+
