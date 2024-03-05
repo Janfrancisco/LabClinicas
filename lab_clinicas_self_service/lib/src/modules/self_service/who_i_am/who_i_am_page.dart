@@ -91,7 +91,7 @@ class _WhoIAmPageState extends State<WhoIAmPage> {
                             height: 48,
                           ),
                           TextFormField(
-                            controller: firstNameEC,
+                            controller: firstNameEC..text = "fulano",
                             decoration: const InputDecoration(
                               label: Text('Digite seu nome'),
                             ),
@@ -102,7 +102,7 @@ class _WhoIAmPageState extends State<WhoIAmPage> {
                             height: 24,
                           ),
                           TextFormField(
-                            controller: lastNameEC,
+                            controller: lastNameEC..text = "Silva",
                             validator:
                                 Validatorless.required("Sobrenome obrigatório"),
                             decoration: const InputDecoration(

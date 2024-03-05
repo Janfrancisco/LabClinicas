@@ -37,5 +37,7 @@ Aula 3.6 >> Criando a controller da Patient page
             Populando os textFields
             Tratando a lógica dos text fields
 
+Aula 3.7 >>  Criando a lógica de cadastro de cliente
+
 
 

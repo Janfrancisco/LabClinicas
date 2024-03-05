@@ -1,5 +1,6 @@
 import 'package:fe_lab_clinicas_self_service_cb/src/model/patient_model.dart';
 import 'package:fe_lab_clinicas_self_service_cb/src/modules/self_service/patient/patient_page.dart';
+import 'package:fe_lab_clinicas_self_service_cb/src/repositories/patients/patient_repository.dart';
 import 'package:flutter/material.dart';
 
 mixin PatientFormController on State<PatientPage> {
@@ -50,5 +51,45 @@ mixin PatientFormController on State<PatientPage> {
       guardianIdentificationNumberEC.text =
           patient.guardianIdentificationNumber;
     }
+  }
+
+  PatientModel updatePatient(PatientModel patient) {
+    return patient.copyWith(
+      name: nameEC.text,
+      email: emailEC.text,
+      phoneNumber: phoneEC.text,
+      document: documentEC.text,
+      address: patient.address.copyWith(
+        cep: cepEC.text,
+        streetAddress: streetEC.text,
+        number: numberEC.text,
+        addressComplement: complementEC.text,
+        state: stateEC.text,
+        city: cityEC.text,
+        district: districtEC.text,
+      ),
+      guardian: guardianEC.text,
+      guardianIdentificationNumber: guardianIdentificationNumberEC.text,
+    );
+  }
+
+  RegisterPatientModel createPatientRegister() {
+    return (
+      name: nameEC.text,
+      email: emailEC.text,
+      phoneNumber: phoneEC.text,
+      document: documentEC.text,
+      address: (
+        cep: cepEC.text,
+        streetAddress: streetEC.text,
+        number: numberEC.text,
+        addressComplement: complementEC.text,
+        state: stateEC.text,
+        city: cityEC.text,
+        district: districtEC.text,
+      ),
+      guardian: guardianEC.text,
+      guardianIdentificationNumber: guardianIdentificationNumberEC.text,
+    );
   }
 }
