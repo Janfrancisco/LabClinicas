@@ -39,5 +39,16 @@ Aula 3.6 >> Criando a controller da Patient page
 
 Aula 3.7 >>  Criando a lógica de cadastro de cliente
 
+Aula 4.1 >> Criando a pagina Documents
+
+Aula 4.2 >> Incluindo document no selfServiceModel
+             
+Aula 4.3 >> Configurar a utilização da càmera no core. 
+            Configurando o FlutterGetIt para obter as câmeras.
+
+Aula 4.4 >> Construindo a tela de scan(foto)
+           
+Aula 4.5
+
 
 

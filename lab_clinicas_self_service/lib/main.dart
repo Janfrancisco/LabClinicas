@@ -9,10 +9,15 @@ import 'package:fe_lab_clinicas_self_service_cb/src/pages/splash_page/splash_pag
 import 'package:flutter/material.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
+import 'package:camera/camera.dart';
+
+late List<CameraDescription> _cameras;
 
 void main() {
-  runZonedGuarded(() {
+  runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
+    _cameras = await availableCameras();
+
     runApp(const LabClinicasSelfServiceApp());
   }, (error, stack) {
     log('Erro não tratado', error: error, stackTrace: stack);
@@ -34,6 +39,10 @@ class LabClinicasSelfServiceApp extends StatelessWidget {
         ),
       ],
       modules: [AuthModules(), HomeModule(), SelfServideModule()],
+      didStart: () {
+        FlutterGetItBindingRegister.registerPermanentBinding(
+            'CAMERAS', [Bind.lazySingleton((i) => _cameras),]);
+      },
     );
   }
 }

@@ -1,14 +1,36 @@
+import 'package:fe_lab_clinicas_self_service_cb/src/model/self_service_model.dart';
 import 'package:fe_lab_clinicas_self_service_cb/src/modules/self_service/documents/widgets/document_box_widget.dart';
+import 'package:fe_lab_clinicas_self_service_cb/src/modules/self_service/self_sevice_controller.dart';
 import 'package:fe_lab_clinicas_self_service_cb/src/modules/self_service/widget/lab_clinicas_self_service_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_getit/flutter_getit.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
 
-class DocumentsPage extends StatelessWidget {
+class DocumentsPage extends StatefulWidget {
   const DocumentsPage({super.key});
+
+  @override
+  State<DocumentsPage> createState() => _DocumentsPageState();
+}
+
+class _DocumentsPageState extends State<DocumentsPage> with MessageViewMixin {
+  final selfServiceController = Injector.get<SelfSeviceController>();
+
+  @override
+  void initState() {
+    messageListener(selfServiceController);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final sizeOf = MediaQuery.sizeOf(context);
+    final documents = selfServiceController.model.documents;
+    final totalHealthInsuranceCard =
+        documents?[DocumentType.healthInsuranceCard]?.length ?? 0;
+    final totalMedicalOrder =
+        documents?[DocumentType.medicalOrder]?.length ?? 0;
 
     return Scaffold(
       appBar: LabClinicasSelfServiceAppbar(),
@@ -48,22 +70,79 @@ class DocumentsPage extends StatelessWidget {
                 ),
                 SizedBox(
                   width: sizeOf.width * .8,
-                  height: 241,
+                  height: 300,
                   child: Row(
                     children: [
                       DocumentBoxWidget(
-                        uploaded: false,
+                        onTap: () async {
+                          final filePath = await Navigator.of(context)
+                              .pushNamed('/self-service/documents/scan');
+                          if (filePath != null && filePath != '') {
+                            selfServiceController.registerDocument(
+                                DocumentType.healthInsuranceCard,
+                                filePath.toString());
+                            setState(() {});
+                          }
+                        },
+                        uploaded: totalHealthInsuranceCard > 0,
                         icon: Image.asset('assets/images/id_card.png'),
-                        label: 'sbsgb',
+                        label: 'CARTEIRINHA',
+                        totalFiles: totalHealthInsuranceCard,
                       ),
                       const SizedBox(
                         width: 32,
                       ),
                       DocumentBoxWidget(
-                        uploaded: false,
-                        icon: Image.asset('assets/images/id_card.png'),
-                        label: 'sbsgb',
+                        onTap: () async {
+                          final filePath = await Navigator.of(context)
+                              .pushNamed('/self-service/documents/scan');
+                          if (filePath != null && filePath != '') {
+                            selfServiceController.registerDocument(
+                                DocumentType.medicalOrder, filePath.toString());
+                            setState(() {});
+                          }
+                        },
+                        uploaded: totalMedicalOrder > 0,
+                        icon: Image.asset('assets/images/document.png'),
+                        label: 'PEDIDO MÉDICO',
+                        totalFiles: totalMedicalOrder,
                       ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                Visibility(
+                  visible:
+                      totalMedicalOrder > 0 && totalHealthInsuranceCard > 0,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: OutlinedButton(
+                          style: OutlinedButton.styleFrom(
+                              foregroundColor: Colors.red,
+                              side: const BorderSide(color: Colors.red),
+                              fixedSize: const Size.fromHeight(48)),
+                          onPressed: () {
+                            selfServiceController.clearDocuments();
+                          },
+                          child: const Text('REMOVER TODAS'),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 12,
+                      ),
+                      Expanded(
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: LabClinicasTheme.orangeColor,
+                            fixedSize: const Size.fromHeight(48),
+                          ),
+                          onPressed: () {},
+                          child: const Text('FINALIZAR'),
+                        ),
+                      )
                     ],
                   ),
                 )
