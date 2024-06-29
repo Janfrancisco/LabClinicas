@@ -29,3 +29,6 @@ database.json
 
 .flutter-plugins
 .flutter-plugins-dependencies
+
+lab_clinicas_core/linux/
+lab_clinicas_core/ios/
