@@ -48,7 +48,10 @@ Aula 4.3 >> Configurar a utilização da càmera no core.
 
 Aula 4.4 >> Construindo a tela de scan(foto)
            
-Aula 4.5
+Aula 4.5 >> Customizando a câmera
+
+Aula 4.6 >> trabalhando na tela scan confirm
+            4:50
 
 
 
